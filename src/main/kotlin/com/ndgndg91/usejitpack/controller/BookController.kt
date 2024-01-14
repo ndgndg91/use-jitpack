@@ -16,6 +16,7 @@ class BookController {
 
     @PostMapping("/apis/books")
     fun books(@RequestBody body: AddBookRequest): ResponseEntity<AddBookResponse> {
+
         body.title.doWhenNotNull { logger.info("book title is {}", it) }
         return ResponseEntity.ok(AddBookResponse(body.title.doAndReturnWhenNotNull { "ndgndg91 $it" }?: "none"))
     }
